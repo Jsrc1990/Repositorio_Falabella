@@ -1,0 +1,86 @@
+﻿@model Proyecto_MVC_Falabella.Models.Compania
+
+@{
+    ViewBag.Title = "Editar";
+}
+
+<h2>Editar</h2>
+
+@using (Html.BeginForm("Modificar", "Compania"))
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>Compania: @Model.Nombre</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+<div class="row">
+
+<div class="col-sm-6">
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Consecutivo, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Consecutivo, new { htmlAttributes = new { @class = "form-control", @readonly=true } })
+                @Html.ValidationMessageFor(model => model.Consecutivo, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        @Html.HiddenFor(model => model.id)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Nombre, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Nombre, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Nombre, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Imagen, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Imagen, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Imagen, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Descripcion, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Descripcion, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Descripcion, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Editar" class="btn btn-default" />
+            </div>
+        </div>
+
+</div>
+
+<div class="col-sm-6">
+
+          <img src="@Model.Imagen" style="width:300px; height:300px; object-fit: cover;" alt="Sin imagen" />
+
+</div>
+
+</div>
+
+
+    </div>
+}
+
+@*<div>
+    @Html.ActionLink("Atrás", "Listar")
+</div>*@
+
+@*<a style="color:#30B033; font-size:xx-large;" href="@Url.Action("Listar", "Producto", null)">
+<span class="glyphicon glyphicon-arrow-left	" alt="Atrás" title="Atrás"></span>
+</a>*@
+
+<a style="color:#30B033; font-size:xx-large;" href="@Url.Action("Listar", "Compania", null)">
+<span class="glyphicon glyphicon-arrow-left	" alt="Atrás" title="Atrás"></span>
+</a>

@@ -1,0 +1,861 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Namespace_Datos.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Actividad">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="Consecutivo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id" Type="varchar" MaxLength="36" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="1000" />
+        </EntityType>
+        <EntityType Name="Asesor">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="Consecutivo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Tipo_DocumentoId" Type="varchar" MaxLength="36" Nullable="false" />
+          <Property Name="id" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Correo" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Contrasenia" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="Imagen" Type="varchar" MaxLength="256" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="1000" />
+        </EntityType>
+        <EntityType Name="Cliente">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="Consecutivo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Tipo_DocumentoId" Type="varchar" MaxLength="36" Nullable="false" />
+          <Property Name="id" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Imagen" Type="varchar" MaxLength="256" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="1000" />
+        </EntityType>
+        <EntityType Name="Compania">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="Consecutivo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id" Type="varchar" MaxLength="36" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Imagen" Type="varchar" MaxLength="256" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="1000" />
+        </EntityType>
+        <EntityType Name="Compania_Tipo_Contacto">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="Consecutivo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id" Type="varchar" MaxLength="36" Nullable="false" />
+          <Property Name="CompaniaId" Type="varchar" MaxLength="36" Nullable="false" />
+          <Property Name="Tipo_ContactoId" Type="varchar" MaxLength="36" Nullable="false" />
+          <Property Name="Valor" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Producto">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="Consecutivo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id" Type="varchar" MaxLength="36" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Tipo_ProductoId" Type="varchar" MaxLength="36" Nullable="false" />
+          <Property Name="CompaniaId" Type="varchar" MaxLength="36" Nullable="false" />
+          <Property Name="Imagen" Type="varchar" MaxLength="256" />
+          <Property Name="Precio" Type="money" Nullable="false" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="1000" />
+        </EntityType>
+        <EntityType Name="Producto_Actividad">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="Consecutivo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id" Type="varchar" MaxLength="36" Nullable="false" />
+          <Property Name="ProductoId" Type="varchar" MaxLength="36" Nullable="false" />
+          <Property Name="ActividadId" Type="varchar" MaxLength="36" Nullable="false" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="1000" />
+        </EntityType>
+        <EntityType Name="Tipo_Contacto">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="Consecutivo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id" Type="varchar" MaxLength="36" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="1000" />
+        </EntityType>
+        <EntityType Name="Tipo_Documento">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="Consecutivo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id" Type="varchar" MaxLength="36" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="1000" />
+        </EntityType>
+        <EntityType Name="Tipo_Producto">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="Consecutivo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id" Type="varchar" MaxLength="36" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="1000" />
+        </EntityType>
+        <EntityType Name="Venta">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="Consecutivo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id" Type="varchar" MaxLength="36" Nullable="false" />
+          <Property Name="AsesorId" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="ClienteId" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="Fecha" Type="date" Nullable="false" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="1000" />
+        </EntityType>
+        <EntityType Name="Venta_Producto">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="Consecutivo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id" Type="varchar" MaxLength="36" Nullable="false" />
+          <Property Name="VentaId" Type="varchar" MaxLength="36" Nullable="false" />
+          <Property Name="ProductoId" Type="varchar" MaxLength="36" Nullable="false" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="1000" />
+        </EntityType>
+        <Association Name="FK__Asesor__Tipo_Doc__607251E5">
+          <End Role="Tipo_Documento" Type="Self.Tipo_Documento" Multiplicity="1" />
+          <End Role="Asesor" Type="Self.Asesor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tipo_Documento">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Asesor">
+              <PropertyRef Name="Tipo_DocumentoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Cliente__Tipo_Do__6442E2C9">
+          <End Role="Tipo_Documento" Type="Self.Tipo_Documento" Multiplicity="1" />
+          <End Role="Cliente" Type="Self.Cliente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tipo_Documento">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Cliente">
+              <PropertyRef Name="Tipo_DocumentoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Compania___Compa__43D61337">
+          <End Role="Compania" Type="Self.Compania" Multiplicity="1" />
+          <End Role="Compania_Tipo_Contacto" Type="Self.Compania_Tipo_Contacto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Compania">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Compania_Tipo_Contacto">
+              <PropertyRef Name="CompaniaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Compania___Tipo___44CA3770">
+          <End Role="Tipo_Contacto" Type="Self.Tipo_Contacto" Multiplicity="1" />
+          <End Role="Compania_Tipo_Contacto" Type="Self.Compania_Tipo_Contacto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tipo_Contacto">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Compania_Tipo_Contacto">
+              <PropertyRef Name="Tipo_ContactoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Producto___Activ__57DD0BE4">
+          <End Role="Actividad" Type="Self.Actividad" Multiplicity="1" />
+          <End Role="Producto_Actividad" Type="Self.Producto_Actividad" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Actividad">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Producto_Actividad">
+              <PropertyRef Name="ActividadId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Producto___Produ__56E8E7AB">
+          <End Role="Producto" Type="Self.Producto" Multiplicity="1" />
+          <End Role="Producto_Actividad" Type="Self.Producto_Actividad" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Producto">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Producto_Actividad">
+              <PropertyRef Name="ProductoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Producto__Compan__4E53A1AA">
+          <End Role="Compania" Type="Self.Compania" Multiplicity="1" />
+          <End Role="Producto" Type="Self.Producto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Compania">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Producto">
+              <PropertyRef Name="CompaniaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Producto__Tipo_P__4D5F7D71">
+          <End Role="Tipo_Producto" Type="Self.Tipo_Producto" Multiplicity="1" />
+          <End Role="Producto" Type="Self.Producto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tipo_Producto">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Producto">
+              <PropertyRef Name="Tipo_ProductoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Venta__AsesorId__681373AD">
+          <End Role="Asesor" Type="Self.Asesor" Multiplicity="1" />
+          <End Role="Venta" Type="Self.Venta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Asesor">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Venta">
+              <PropertyRef Name="AsesorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Venta_Pro__Produ__6DCC4D03">
+          <End Role="Producto" Type="Self.Producto" Multiplicity="1" />
+          <End Role="Venta_Producto" Type="Self.Venta_Producto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Producto">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Venta_Producto">
+              <PropertyRef Name="ProductoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Venta_Pro__Venta__6CD828CA">
+          <End Role="Venta" Type="Self.Venta" Multiplicity="1" />
+          <End Role="Venta_Producto" Type="Self.Venta_Producto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Venta">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Venta_Producto">
+              <PropertyRef Name="VentaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Venta_ClienteId">
+          <End Role="Cliente" Type="Self.Cliente" Multiplicity="1" />
+          <End Role="Venta" Type="Self.Venta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cliente">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Venta">
+              <PropertyRef Name="ClienteId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Namespace_DatosStoreContainer">
+          <EntitySet Name="Actividad" EntityType="Self.Actividad" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Asesor" EntityType="Self.Asesor" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Cliente" EntityType="Self.Cliente" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Compania" EntityType="Self.Compania" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Compania_Tipo_Contacto" EntityType="Self.Compania_Tipo_Contacto" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Producto" EntityType="Self.Producto" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Producto_Actividad" EntityType="Self.Producto_Actividad" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tipo_Contacto" EntityType="Self.Tipo_Contacto" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tipo_Documento" EntityType="Self.Tipo_Documento" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tipo_Producto" EntityType="Self.Tipo_Producto" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Venta" EntityType="Self.Venta" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Venta_Producto" EntityType="Self.Venta_Producto" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Asesor__Tipo_Doc__607251E5" Association="Self.FK__Asesor__Tipo_Doc__607251E5">
+            <End Role="Tipo_Documento" EntitySet="Tipo_Documento" />
+            <End Role="Asesor" EntitySet="Asesor" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Cliente__Tipo_Do__6442E2C9" Association="Self.FK__Cliente__Tipo_Do__6442E2C9">
+            <End Role="Tipo_Documento" EntitySet="Tipo_Documento" />
+            <End Role="Cliente" EntitySet="Cliente" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Compania___Compa__43D61337" Association="Self.FK__Compania___Compa__43D61337">
+            <End Role="Compania" EntitySet="Compania" />
+            <End Role="Compania_Tipo_Contacto" EntitySet="Compania_Tipo_Contacto" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Compania___Tipo___44CA3770" Association="Self.FK__Compania___Tipo___44CA3770">
+            <End Role="Tipo_Contacto" EntitySet="Tipo_Contacto" />
+            <End Role="Compania_Tipo_Contacto" EntitySet="Compania_Tipo_Contacto" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Producto___Activ__57DD0BE4" Association="Self.FK__Producto___Activ__57DD0BE4">
+            <End Role="Actividad" EntitySet="Actividad" />
+            <End Role="Producto_Actividad" EntitySet="Producto_Actividad" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Producto___Produ__56E8E7AB" Association="Self.FK__Producto___Produ__56E8E7AB">
+            <End Role="Producto" EntitySet="Producto" />
+            <End Role="Producto_Actividad" EntitySet="Producto_Actividad" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Producto__Compan__4E53A1AA" Association="Self.FK__Producto__Compan__4E53A1AA">
+            <End Role="Compania" EntitySet="Compania" />
+            <End Role="Producto" EntitySet="Producto" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Producto__Tipo_P__4D5F7D71" Association="Self.FK__Producto__Tipo_P__4D5F7D71">
+            <End Role="Tipo_Producto" EntitySet="Tipo_Producto" />
+            <End Role="Producto" EntitySet="Producto" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Venta__AsesorId__681373AD" Association="Self.FK__Venta__AsesorId__681373AD">
+            <End Role="Asesor" EntitySet="Asesor" />
+            <End Role="Venta" EntitySet="Venta" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Venta_Pro__Produ__6DCC4D03" Association="Self.FK__Venta_Pro__Produ__6DCC4D03">
+            <End Role="Producto" EntitySet="Producto" />
+            <End Role="Venta_Producto" EntitySet="Venta_Producto" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Venta_Pro__Venta__6CD828CA" Association="Self.FK__Venta_Pro__Venta__6CD828CA">
+            <End Role="Venta" EntitySet="Venta" />
+            <End Role="Venta_Producto" EntitySet="Venta_Producto" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Venta_ClienteId" Association="Self.FK_Venta_ClienteId">
+            <End Role="Cliente" EntitySet="Cliente" />
+            <End Role="Venta" EntitySet="Venta" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Namespace_Datos" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Actividad">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="Consecutivo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id" Type="String" MaxLength="36" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Descripcion" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Producto_Actividad" Relationship="Self.FK__Producto___Activ__7A672E12" FromRole="Actividad" ToRole="Producto_Actividad" />
+        </EntityType>
+        <EntityType Name="Asesor">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="Consecutivo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Tipo_DocumentoId" Type="String" MaxLength="36" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="id" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Imagen" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+          <Property Name="Descripcion" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Tipo_Documento" Relationship="Self.FK__Asesor__Tipo_Doc__02084FDA" FromRole="Asesor" ToRole="Tipo_Documento" />
+          <NavigationProperty Name="Venta" Relationship="Self.FK__Venta__AsesorId__29221CFB" FromRole="Asesor" ToRole="Venta" />
+          <Property Name="Correo" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Contrasenia" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Cliente">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="Consecutivo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Tipo_DocumentoId" Type="String" MaxLength="36" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="id" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Imagen" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+          <Property Name="Descripcion" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Tipo_Documento" Relationship="Self.FK__Cliente__Tipo_Do__05D8E0BE" FromRole="Cliente" ToRole="Tipo_Documento" />
+          <NavigationProperty Name="Venta" Relationship="Namespace_Datos.FK_Venta_ClienteId" FromRole="Cliente" ToRole="Venta" />
+        </EntityType>
+        <EntityType Name="Compania">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="Consecutivo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id" Type="String" MaxLength="36" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Imagen" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+          <Property Name="Descripcion" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Compania_Tipo_Contacto" Relationship="Self.FK__Compania___Compa__66603565" FromRole="Compania" ToRole="Compania_Tipo_Contacto" />
+          <NavigationProperty Name="Producto" Relationship="Self.FK__Producto__Compan__70DDC3D8" FromRole="Compania" ToRole="Producto" />
+        </EntityType>
+        <EntityType Name="Compania_Tipo_Contacto">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="Consecutivo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id" Type="String" MaxLength="36" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CompaniaId" Type="String" MaxLength="36" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Tipo_ContactoId" Type="String" MaxLength="36" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Valor" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Compania" Relationship="Self.FK__Compania___Compa__66603565" FromRole="Compania_Tipo_Contacto" ToRole="Compania" />
+          <NavigationProperty Name="Tipo_Contacto" Relationship="Self.FK__Compania___Tipo___6754599E" FromRole="Compania_Tipo_Contacto" ToRole="Tipo_Contacto" />
+        </EntityType>
+        <EntityType Name="Producto">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="Consecutivo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id" Type="String" MaxLength="36" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Tipo_ProductoId" Type="String" MaxLength="36" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CompaniaId" Type="String" MaxLength="36" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Imagen" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+          <Property Name="Descripcion" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Compania" Relationship="Self.FK__Producto__Compan__70DDC3D8" FromRole="Producto" ToRole="Compania" />
+          <NavigationProperty Name="Producto_Actividad" Relationship="Self.FK__Producto___Produ__797309D9" FromRole="Producto" ToRole="Producto_Actividad" />
+          <NavigationProperty Name="Tipo_Producto" Relationship="Self.FK__Producto__Tipo_P__6FE99F9F" FromRole="Producto" ToRole="Tipo_Producto" />
+          <NavigationProperty Name="Venta_Producto" Relationship="Self.FK__Venta_Pro__Produ__2DE6D218" FromRole="Producto" ToRole="Venta_Producto" />
+          <Property Name="Precio" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+        </EntityType>
+        <EntityType Name="Producto_Actividad">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="Consecutivo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id" Type="String" MaxLength="36" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ProductoId" Type="String" MaxLength="36" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ActividadId" Type="String" MaxLength="36" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Descripcion" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Actividad" Relationship="Self.FK__Producto___Activ__7A672E12" FromRole="Producto_Actividad" ToRole="Actividad" />
+          <NavigationProperty Name="Producto" Relationship="Self.FK__Producto___Produ__797309D9" FromRole="Producto_Actividad" ToRole="Producto" />
+        </EntityType>
+        <EntityType Name="Tipo_Contacto">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="Consecutivo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id" Type="String" MaxLength="36" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Descripcion" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Compania_Tipo_Contacto" Relationship="Self.FK__Compania___Tipo___6754599E" FromRole="Tipo_Contacto" ToRole="Compania_Tipo_Contacto" />
+        </EntityType>
+        <EntityType Name="Tipo_Documento">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="Consecutivo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id" Type="String" MaxLength="36" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Descripcion" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Asesor" Relationship="Self.FK__Asesor__Tipo_Doc__02084FDA" FromRole="Tipo_Documento" ToRole="Asesor" />
+          <NavigationProperty Name="Cliente" Relationship="Self.FK__Cliente__Tipo_Do__05D8E0BE" FromRole="Tipo_Documento" ToRole="Cliente" />
+        </EntityType>
+        <EntityType Name="Tipo_Producto">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="Consecutivo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id" Type="String" MaxLength="36" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Descripcion" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Producto" Relationship="Self.FK__Producto__Tipo_P__6FE99F9F" FromRole="Tipo_Producto" ToRole="Producto" />
+        </EntityType>
+        <EntityType Name="Venta">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="Consecutivo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id" Type="String" MaxLength="36" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="AsesorId" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ClienteId" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Fecha" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Descripcion" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Asesor" Relationship="Self.FK__Venta__AsesorId__29221CFB" FromRole="Venta" ToRole="Asesor" />
+          <NavigationProperty Name="Venta_Producto" Relationship="Self.FK__Venta_Pro__Venta__2CF2ADDF" FromRole="Venta" ToRole="Venta_Producto" />
+          <NavigationProperty Name="Cliente" Relationship="Namespace_Datos.FK_Venta_ClienteId" FromRole="Venta" ToRole="Cliente" />
+        </EntityType>
+        <EntityType Name="Venta_Producto">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="Consecutivo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id" Type="String" MaxLength="36" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="VentaId" Type="String" MaxLength="36" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ProductoId" Type="String" MaxLength="36" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Descripcion" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Producto" Relationship="Self.FK__Venta_Pro__Produ__2DE6D218" FromRole="Venta_Producto" ToRole="Producto" />
+          <NavigationProperty Name="Venta" Relationship="Self.FK__Venta_Pro__Venta__2CF2ADDF" FromRole="Venta_Producto" ToRole="Venta" />
+        </EntityType>
+        <Association Name="FK__Producto___Activ__7A672E12">
+          <End Role="Actividad" Type="Self.Actividad" Multiplicity="1" />
+          <End Role="Producto_Actividad" Type="Self.Producto_Actividad" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Actividad">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Producto_Actividad">
+              <PropertyRef Name="ActividadId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Asesor__Tipo_Doc__02084FDA">
+          <End Role="Tipo_Documento" Type="Self.Tipo_Documento" Multiplicity="1" />
+          <End Role="Asesor" Type="Self.Asesor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tipo_Documento">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Asesor">
+              <PropertyRef Name="Tipo_DocumentoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Venta__AsesorId__29221CFB">
+          <End Role="Asesor" Type="Self.Asesor" Multiplicity="1" />
+          <End Role="Venta" Type="Self.Venta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Asesor">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Venta">
+              <PropertyRef Name="AsesorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Cliente__Tipo_Do__05D8E0BE">
+          <End Role="Tipo_Documento" Type="Self.Tipo_Documento" Multiplicity="1" />
+          <End Role="Cliente" Type="Self.Cliente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tipo_Documento">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Cliente">
+              <PropertyRef Name="Tipo_DocumentoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Compania___Compa__66603565">
+          <End Role="Compania" Type="Self.Compania" Multiplicity="1" />
+          <End Role="Compania_Tipo_Contacto" Type="Self.Compania_Tipo_Contacto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Compania">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Compania_Tipo_Contacto">
+              <PropertyRef Name="CompaniaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Producto__Compan__70DDC3D8">
+          <End Role="Compania" Type="Self.Compania" Multiplicity="1" />
+          <End Role="Producto" Type="Self.Producto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Compania">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Producto">
+              <PropertyRef Name="CompaniaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Compania___Tipo___6754599E">
+          <End Role="Tipo_Contacto" Type="Self.Tipo_Contacto" Multiplicity="1" />
+          <End Role="Compania_Tipo_Contacto" Type="Self.Compania_Tipo_Contacto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tipo_Contacto">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Compania_Tipo_Contacto">
+              <PropertyRef Name="Tipo_ContactoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Producto___Produ__797309D9">
+          <End Role="Producto" Type="Self.Producto" Multiplicity="1" />
+          <End Role="Producto_Actividad" Type="Self.Producto_Actividad" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Producto">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Producto_Actividad">
+              <PropertyRef Name="ProductoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Producto__Tipo_P__6FE99F9F">
+          <End Role="Tipo_Producto" Type="Self.Tipo_Producto" Multiplicity="1" />
+          <End Role="Producto" Type="Self.Producto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tipo_Producto">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Producto">
+              <PropertyRef Name="Tipo_ProductoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Venta_Pro__Produ__2DE6D218">
+          <End Role="Producto" Type="Self.Producto" Multiplicity="1" />
+          <End Role="Venta_Producto" Type="Self.Venta_Producto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Producto">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Venta_Producto">
+              <PropertyRef Name="ProductoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Venta_Pro__Venta__2CF2ADDF">
+          <End Role="Venta" Type="Self.Venta" Multiplicity="1" />
+          <End Role="Venta_Producto" Type="Self.Venta_Producto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Venta">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Venta_Producto">
+              <PropertyRef Name="VentaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Contexto_Datos" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Actividad" EntityType="Self.Actividad" />
+          <EntitySet Name="Asesor" EntityType="Self.Asesor" />
+          <EntitySet Name="Cliente" EntityType="Self.Cliente" />
+          <EntitySet Name="Compania" EntityType="Self.Compania" />
+          <EntitySet Name="Compania_Tipo_Contacto" EntityType="Self.Compania_Tipo_Contacto" />
+          <EntitySet Name="Producto" EntityType="Self.Producto" />
+          <EntitySet Name="Producto_Actividad" EntityType="Self.Producto_Actividad" />
+          <EntitySet Name="Tipo_Contacto" EntityType="Self.Tipo_Contacto" />
+          <EntitySet Name="Tipo_Documento" EntityType="Self.Tipo_Documento" />
+          <EntitySet Name="Tipo_Producto" EntityType="Self.Tipo_Producto" />
+          <EntitySet Name="Venta" EntityType="Self.Venta" />
+          <EntitySet Name="Venta_Producto" EntityType="Self.Venta_Producto" />
+          <AssociationSet Name="FK__Producto___Activ__7A672E12" Association="Self.FK__Producto___Activ__7A672E12">
+            <End Role="Actividad" EntitySet="Actividad" />
+            <End Role="Producto_Actividad" EntitySet="Producto_Actividad" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Asesor__Tipo_Doc__02084FDA" Association="Self.FK__Asesor__Tipo_Doc__02084FDA">
+            <End Role="Tipo_Documento" EntitySet="Tipo_Documento" />
+            <End Role="Asesor" EntitySet="Asesor" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Venta__AsesorId__29221CFB" Association="Self.FK__Venta__AsesorId__29221CFB">
+            <End Role="Asesor" EntitySet="Asesor" />
+            <End Role="Venta" EntitySet="Venta" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Cliente__Tipo_Do__05D8E0BE" Association="Self.FK__Cliente__Tipo_Do__05D8E0BE">
+            <End Role="Tipo_Documento" EntitySet="Tipo_Documento" />
+            <End Role="Cliente" EntitySet="Cliente" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Compania___Compa__66603565" Association="Self.FK__Compania___Compa__66603565">
+            <End Role="Compania" EntitySet="Compania" />
+            <End Role="Compania_Tipo_Contacto" EntitySet="Compania_Tipo_Contacto" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Producto__Compan__70DDC3D8" Association="Self.FK__Producto__Compan__70DDC3D8">
+            <End Role="Compania" EntitySet="Compania" />
+            <End Role="Producto" EntitySet="Producto" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Compania___Tipo___6754599E" Association="Self.FK__Compania___Tipo___6754599E">
+            <End Role="Tipo_Contacto" EntitySet="Tipo_Contacto" />
+            <End Role="Compania_Tipo_Contacto" EntitySet="Compania_Tipo_Contacto" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Producto___Produ__797309D9" Association="Self.FK__Producto___Produ__797309D9">
+            <End Role="Producto" EntitySet="Producto" />
+            <End Role="Producto_Actividad" EntitySet="Producto_Actividad" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Producto__Tipo_P__6FE99F9F" Association="Self.FK__Producto__Tipo_P__6FE99F9F">
+            <End Role="Tipo_Producto" EntitySet="Tipo_Producto" />
+            <End Role="Producto" EntitySet="Producto" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Venta_Pro__Produ__2DE6D218" Association="Self.FK__Venta_Pro__Produ__2DE6D218">
+            <End Role="Producto" EntitySet="Producto" />
+            <End Role="Venta_Producto" EntitySet="Venta_Producto" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Venta_Pro__Venta__2CF2ADDF" Association="Self.FK__Venta_Pro__Venta__2CF2ADDF">
+            <End Role="Venta" EntitySet="Venta" />
+            <End Role="Venta_Producto" EntitySet="Venta_Producto" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Venta_ClienteId" Association="Namespace_Datos.FK_Venta_ClienteId">
+            <End Role="Cliente" EntitySet="Cliente" />
+            <End Role="Venta" EntitySet="Venta" />
+          </AssociationSet>
+        </EntityContainer>
+        <Association Name="FK_Venta_ClienteId">
+          <End Type="Namespace_Datos.Cliente" Role="Cliente" Multiplicity="1" />
+          <End Type="Namespace_Datos.Venta" Role="Venta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cliente">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Venta">
+              <PropertyRef Name="ClienteId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Namespace_DatosStoreContainer" CdmEntityContainer="Contexto_Datos">
+          <EntitySetMapping Name="Actividad">
+            <EntityTypeMapping TypeName="Namespace_Datos.Actividad">
+              <MappingFragment StoreEntitySet="Actividad">
+                <ScalarProperty Name="Consecutivo" ColumnName="Consecutivo" />
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Asesor">
+            <EntityTypeMapping TypeName="Namespace_Datos.Asesor">
+              <MappingFragment StoreEntitySet="Asesor">
+                <ScalarProperty Name="Contrasenia" ColumnName="Contrasenia" />
+                <ScalarProperty Name="Correo" ColumnName="Correo" />
+                <ScalarProperty Name="Consecutivo" ColumnName="Consecutivo" />
+                <ScalarProperty Name="Tipo_DocumentoId" ColumnName="Tipo_DocumentoId" />
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Imagen" ColumnName="Imagen" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Cliente">
+            <EntityTypeMapping TypeName="Namespace_Datos.Cliente">
+              <MappingFragment StoreEntitySet="Cliente">
+                <ScalarProperty Name="Consecutivo" ColumnName="Consecutivo" />
+                <ScalarProperty Name="Tipo_DocumentoId" ColumnName="Tipo_DocumentoId" />
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Imagen" ColumnName="Imagen" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Compania">
+            <EntityTypeMapping TypeName="Namespace_Datos.Compania">
+              <MappingFragment StoreEntitySet="Compania">
+                <ScalarProperty Name="Consecutivo" ColumnName="Consecutivo" />
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Imagen" ColumnName="Imagen" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Compania_Tipo_Contacto">
+            <EntityTypeMapping TypeName="Namespace_Datos.Compania_Tipo_Contacto">
+              <MappingFragment StoreEntitySet="Compania_Tipo_Contacto">
+                <ScalarProperty Name="Consecutivo" ColumnName="Consecutivo" />
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="CompaniaId" ColumnName="CompaniaId" />
+                <ScalarProperty Name="Tipo_ContactoId" ColumnName="Tipo_ContactoId" />
+                <ScalarProperty Name="Valor" ColumnName="Valor" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Producto">
+            <EntityTypeMapping TypeName="Namespace_Datos.Producto">
+              <MappingFragment StoreEntitySet="Producto">
+                <ScalarProperty Name="Precio" ColumnName="Precio" />
+                <ScalarProperty Name="Consecutivo" ColumnName="Consecutivo" />
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Tipo_ProductoId" ColumnName="Tipo_ProductoId" />
+                <ScalarProperty Name="CompaniaId" ColumnName="CompaniaId" />
+                <ScalarProperty Name="Imagen" ColumnName="Imagen" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Producto_Actividad">
+            <EntityTypeMapping TypeName="Namespace_Datos.Producto_Actividad">
+              <MappingFragment StoreEntitySet="Producto_Actividad">
+                <ScalarProperty Name="Consecutivo" ColumnName="Consecutivo" />
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="ProductoId" ColumnName="ProductoId" />
+                <ScalarProperty Name="ActividadId" ColumnName="ActividadId" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tipo_Contacto">
+            <EntityTypeMapping TypeName="Namespace_Datos.Tipo_Contacto">
+              <MappingFragment StoreEntitySet="Tipo_Contacto">
+                <ScalarProperty Name="Consecutivo" ColumnName="Consecutivo" />
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tipo_Documento">
+            <EntityTypeMapping TypeName="Namespace_Datos.Tipo_Documento">
+              <MappingFragment StoreEntitySet="Tipo_Documento">
+                <ScalarProperty Name="Consecutivo" ColumnName="Consecutivo" />
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tipo_Producto">
+            <EntityTypeMapping TypeName="Namespace_Datos.Tipo_Producto">
+              <MappingFragment StoreEntitySet="Tipo_Producto">
+                <ScalarProperty Name="Consecutivo" ColumnName="Consecutivo" />
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Venta">
+            <EntityTypeMapping TypeName="Namespace_Datos.Venta">
+              <MappingFragment StoreEntitySet="Venta">
+                <ScalarProperty Name="Consecutivo" ColumnName="Consecutivo" />
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="AsesorId" ColumnName="AsesorId" />
+                <ScalarProperty Name="ClienteId" ColumnName="ClienteId" />
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Venta_Producto">
+            <EntityTypeMapping TypeName="Namespace_Datos.Venta_Producto">
+              <MappingFragment StoreEntitySet="Venta_Producto">
+                <ScalarProperty Name="Consecutivo" ColumnName="Consecutivo" />
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="VentaId" ColumnName="VentaId" />
+                <ScalarProperty Name="ProductoId" ColumnName="ProductoId" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

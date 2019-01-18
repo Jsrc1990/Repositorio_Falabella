@@ -1,0 +1,108 @@
+﻿@model IEnumerable<Proyecto_MVC_Falabella.Models.Cliente>
+
+@{
+    ViewBag.Title = "Clientes";
+}
+
+<h2>@ViewBag.Title</h2>
+
+@*<p>
+    @Html.ActionLink("Crear", "Crear")
+</p>*@
+
+Los asesores de ventas requieren poder generar ventas de los clientes en donde se registren sus datos personales
+
+<div style="text-align:right; font-size:xx-large;">
+<a style="color:#30B033;" href="@Url.Action("Crear", "Cliente",null)">
+<span class="glyphicon glyphicon-plus" alt="Agregar Cliente" title="Agregar Cliente"></span>
+</a>
+</div>
+
+<br />
+
+<table class="table table-striped" style="text-align:center;">
+    <tr>
+        <th style="text-align:center;">
+        </th>
+
+
+        <th  style="text-align:center;">
+            @Html.DisplayNameFor(model => model.Consecutivo)
+        </th>
+        <th  style="text-align:center;">
+            @*@Html.DisplayNameFor(model => model.Tipo_DocumentoId)*@
+Tipo de documento
+        </th>
+        <th  style="text-align:center;">
+Identificación
+        </th>
+        <th  style="text-align:center;">
+            @Html.DisplayNameFor(model => model.Nombre)
+        </th>
+        <th  style="text-align:center;">
+            @Html.DisplayNameFor(model => model.Descripcion)
+        </th>
+        <th style="text-align:center;">Acciones</th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+
+<td>
+
+          <img src="@item.Imagen" style="width:150px; height:150px; object-fit: cover;" alt="Sin imagen" />
+
+</td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Consecutivo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Tipo_Documento.Nombre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.id)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Nombre)
+        </td>
+        <td>
+            @*@Html.DisplayFor(modelItem => item.Descripcion)*@
+
+@if(string.IsNullOrWhiteSpace(item.Descripcion))
+{
+<text>N/A</text>
+}
+else
+{
+            @Html.DisplayFor(modelItem => item.Descripcion)
+}
+
+        </td>
+        <td>
+            @*@Html.ActionLink("Editar", "Editar", new { id=item.id }) |
+            @Html.ActionLink("Detallar", "Detallar", new { id=item.id }) |
+            @Html.ActionLink("Eliminar", "Eliminar", new { id=item.id })*@
+
+<a style="color:#30B033; font-size:x-large;" href="@Url.Action("Detallar", new { id=item.id })">
+<span class="glyphicon glyphicon-eye-open	" alt="Detallar" title="Detallar"></span>
+</a>
+&nbsp;&nbsp;
+
+<a style="color:#30B033; font-size:x-large;" href="@Url.Action("Editar", new { id=item.id })">
+<span class="glyphicon glyphicon-pencil" alt="Editar" title="Editar"></span>
+</a>
+&nbsp;&nbsp;
+
+<a style="color:#30B033; font-size:x-large;" href="@Url.Action("Eliminar", new { id=item.id })">
+<span class="glyphicon glyphicon-trash" alt="Eliminar" title="Eliminar"></span>
+</a>
+
+        </td>
+    </tr>
+}
+
+</table>
+
+<a style="color:#30B033; font-size:xx-large;" href="@Url.Action("Panel_Control", "Contenido", null)">
+<span class="glyphicon glyphicon-arrow-left	" alt="Atrás" title="Atrás"></span>
+</a>

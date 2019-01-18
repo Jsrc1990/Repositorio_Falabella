@@ -1,0 +1,168 @@
+﻿@model Proyecto_MVC_Falabella.Models.Venta
+
+@{
+    ViewBag.Title = "Crear";
+}
+
+<h2>Crear</h2>
+
+@using (Html.BeginForm("Guardar", "Venta")) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>Nueva Venta</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+<div class="row">
+<div class="col-sm-6">
+
+
+
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Consecutivo, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Consecutivo, new { htmlAttributes = new { @class = "form-control", @readonly=true } })
+                @Html.ValidationMessageFor(model => model.Consecutivo, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @*@Html.LabelFor(model => model.AsesorId, htmlAttributes: new { @class = "control-label col-md-2" })*@
+<span class="control-label col-md-2" style="font-weight:bold;">Asesor</span>
+            <div class="col-md-10">
+@*@Html.DropDownListFor(m => m.AsesorId, null, new { @class = "form-control from-control-FF" })*@
+
+                @Html.EditorFor(model => model.AsesorId, new { htmlAttributes = new { @class = "form-control", @readonly=true, @Value = ViewBag.AsesorId } })
+                @Html.ValidationMessageFor(model => model.AsesorId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @*@Html.LabelFor(model => model.ClienteId, htmlAttributes: new { @class = "control-label col-md-2" })*@
+<span class="control-label col-md-2" style="font-weight:bold;">Cliente</span>
+            <div class="col-md-10">
+@Html.DropDownListFor(m => m.ClienteId, null, new { @class = "form-control from-control-FF" })
+                @*@Html.EditorFor(model => model.ClienteId, new { htmlAttributes = new { @class = "form-control" } })*@
+                @Html.ValidationMessageFor(model => model.ClienteId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        @*<div class="form-group">
+            @Html.LabelFor(model => model.Nombre, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Nombre, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Nombre, "", new { @class = "text-danger" })
+            </div>
+        </div>*@
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Descripcion, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Descripcion, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Descripcion, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        @*<div class="form-group">
+            @Html.LabelFor(model => model.Fecha, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Fecha, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Fecha, "", new { @class = "text-danger" })
+            </div>
+        </div>*@
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Vender" class="btn btn-default" />
+            </div>
+        </div>
+
+</div>
+
+<div class="col-sm-6">
+
+<h2>Productos</h2>
+
+<table class="table table-striped" style="text-align:center;">
+    <tr>
+        <th style="text-align:center;">
+        </th>
+
+        <th style="text-align:center;">
+Consecutivo
+        </th>
+        <th style="text-align:center;">
+Nombre
+        </th>
+        <th style="text-align:center;">
+            @*@Html.DisplayNameFor(model => model.Tipo_ProductoId)*@
+Tipo de Producto
+        </th>
+        <th style="text-align:center;">
+Descripción
+        </th>
+        <th style="text-align:center;">
+Compañia
+            @*@Html.DisplayNameFor(model => model.CompaniaId)*@
+        </th>
+
+    </tr>
+
+@if(Model != null && Model.Lista_Productos != null)
+{
+foreach (var item in Model.Lista_Productos) {
+    <tr>
+<td>
+
+          <img src="@item.Producto.Imagen" style="width:150px; height:150px; object-fit: cover;" alt="Sin imagen" />
+
+</td>
+
+        <td>
+            @Html.DisplayFor(modelItem => item.Producto.Consecutivo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Producto.Nombre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Producto.Tipo_Producto.Nombre)
+        </td>
+        <td>
+
+@if(string.IsNullOrWhiteSpace(item.Producto.Descripcion))
+{
+<text>N/A</text>
+}
+else
+{
+            @Html.DisplayFor(modelItem => item.Producto.Descripcion)
+}
+
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Producto.Compania.Nombre)
+        </td>
+
+    </tr>
+
+}
+}
+
+</table>
+
+</div>
+
+</div>
+
+
+    </div>
+}
+
+
+
+<a style="color:#30B033; font-size:xx-large;" href="@Url.Action("Listar", "Venta", null)">
+<span class="glyphicon glyphicon-arrow-left	" alt="Atrás" title="Atrás"></span>
+</a>

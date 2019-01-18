@@ -1,0 +1,95 @@
+﻿@model IEnumerable<Proyecto_MVC_Falabella.Models.Venta>
+
+@{
+    ViewBag.Title = "Ventas";
+}
+
+<h2>@ViewBag.Title</h2>
+
+@*<p>
+    @Html.ActionLink("Crear nueva Venta", "Crear")
+</p>*@
+
+Los asesores de ventas requieren poder generar ventas.
+
+<div style="text-align:right; font-size:xx-large;">
+<a style="color:#30B033;" href="@Url.Action("Crear", "Venta",null)">
+<span class="glyphicon glyphicon-plus" alt="Vender" title="Vender"></span>
+</a>
+</div>
+
+<br />
+
+<table class="table table-striped" style="text-align:center;">
+    <tr>
+        <th style="text-align:center;">
+            @Html.DisplayNameFor(model => model.Consecutivo)
+        </th>
+        <th style="text-align:center;">
+            @*@Html.DisplayNameFor(model => model.AsesorId)*@
+Asesor
+        </th>
+        <th style="text-align:center;">
+            @*@Html.DisplayNameFor(model => model.ClienteId)*@
+Cliente
+        </th>
+        @*<th style="text-align:center;">
+            @Html.DisplayNameFor(model => model.Nombre)
+        </th>*@
+        <th style="text-align:center;">
+            @Html.DisplayNameFor(model => model.Descripcion)
+        </th>
+        <th style="text-align:center;">
+            @Html.DisplayNameFor(model => model.Fecha)
+        </th>
+        <th style="text-align:center;">Acciones</th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Consecutivo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Asesor.Nombre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Cliente.Nombre)
+        </td>
+        @*<td>
+            @Html.DisplayFor(modelItem => item.Nombre)
+        </td>*@
+        <td>
+
+@if(string.IsNullOrWhiteSpace(item.Descripcion))
+{
+<text>N/A</text>
+}
+else
+{
+            @Html.DisplayFor(modelItem => item.Descripcion)
+}
+
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Fecha)
+        </td>
+        <td>
+
+<a style="color:#30B033; font-size:x-large;" href="@Url.Action("Detallar", new { id=item.id })">
+<span class="glyphicon glyphicon-eye-open	" alt="Detallar" title="Detallar"></span>
+</a>
+&nbsp;&nbsp;
+
+            @*@Html.ActionLink("Editar", "Editar", new { id=item.id }) |
+            @Html.ActionLink("Detallar", "Detallar", new { id=item.id }) |
+            @Html.ActionLink("Eliminar", "Eliminar", new { id=item.id })*@
+        </td>
+    </tr>
+}
+
+</table>
+
+<a style="color:#30B033; font-size:xx-large;" href="@Url.Action("Panel_Control", "Contenido", null)">
+<span class="glyphicon glyphicon-arrow-left	" alt="Atrás" title="Atrás"></span>
+</a>

@@ -1,0 +1,78 @@
+﻿@model Proyecto_MVC_Falabella.Models.Cliente
+
+@{
+    ViewBag.Title = "Eliminar";
+}
+
+<h2>Eliminar</h2>
+
+<h3>Estás seguro de eliminar este cliente?</h3>
+<div>
+    <h4>Cliente: @Model.Nombre</h4>
+    <hr />
+
+          <img src="@Model.Imagen" style="width:300px; height:300px; object-fit: cover;" alt="Sin Imagen" />
+
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Consecutivo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Consecutivo)
+        </dd>
+
+        <dt>
+            @*@Html.DisplayNameFor(model => model.Tipo_DocumentoId)*@
+Tipo de documento
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Tipo_Documento.Nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Descripcion)
+        </dt>
+
+        <dd>
+            @*@Html.DisplayFor(model => model.Descripcion)*@
+
+@if(string.IsNullOrWhiteSpace(Model.Descripcion))
+{
+<text>N/A</text>
+}
+else
+{
+            @Html.DisplayFor(modelItem => Model.Descripcion)
+}
+
+        </dd>
+
+        @*<dt>
+            @Html.DisplayNameFor(model => model.Imagen)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Imagen)
+        </dd>*@
+
+    </dl>
+
+    @using (Html.BeginForm("Suprimir", "Cliente", new {id = Model.id})) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Eliminar" class="btn btn-default" /> |
+            @Html.ActionLink("Atrás", "Listar")
+        </div>
+    }
+</div>

@@ -1,0 +1,79 @@
+﻿@model Proyecto_MVC_Falabella.Models.Cliente
+
+@{
+    ViewBag.Title = "Crear";
+}
+
+<h2>@ViewBag.Title</h2>
+
+@using (Html.BeginForm("Guardar", "Cliente")) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>Nuevo Cliente</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.Consecutivo, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Consecutivo, new { htmlAttributes = new { @class = "form-control", @readonly=true } })
+                @Html.ValidationMessageFor(model => model.Consecutivo, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @*@Html.LabelFor(model => model.Tipo_DocumentoId, htmlAttributes: new { @class = "control-label col-md-2" })*@
+
+<span class="control-label col-md-2" style="font-weight:bold;">Tipo de documento</span>
+
+            <div class="col-md-10">
+                @*@Html.EditorFor(model => model.Tipo_DocumentoId, new { htmlAttributes = new { @class = "form-control" } })*@
+@Html.DropDownListFor(m => m.Tipo_DocumentoId, null, new { @class = "form-control from-control-FF" })
+                @Html.ValidationMessageFor(model => model.Tipo_DocumentoId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+<span class="control-label col-md-2" style="font-weight:bold;">Identificación</span>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.id, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.id, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Nombre, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Nombre, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Nombre, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Imagen, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Imagen, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Imagen, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Descripcion, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Descripcion, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Descripcion, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Guardar" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<a style="color:#30B033; font-size:xx-large;" href="@Url.Action("Listar", "Cliente", null)">
+<span class="glyphicon glyphicon-arrow-left	" alt="Atrás" title="Atrás"></span>
+</a>
